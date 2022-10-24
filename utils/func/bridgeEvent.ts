@@ -29,7 +29,7 @@ export const bridgeEvent = <T extends BridgeEventType>(
   const windowThis = window as any;
   if (isMobile.any()) {
     if (isMobile.Android()) {
-      windowThis.android.bridge[event](data);
+      windowThis.android[event](data);
     }
   } else {
     data && webEvent?.(data);
