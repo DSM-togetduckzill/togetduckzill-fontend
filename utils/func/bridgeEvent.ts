@@ -1,9 +1,10 @@
-type BridgeEventType = "navigate";
+type BridgeEventType = "navigate" | "signupNext";
 
 interface BridgeDataType {
   navigate: {
     url: string;
   };
+  signupNext: undefined;
 }
 
 const isMobile = {

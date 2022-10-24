@@ -5,6 +5,7 @@ import Button from "../components/common/Button";
 import { bridgeEvent } from "../utils/func/bridgeEvent";
 import PageContainer from "../components/common/Container";
 import useInput from "../hooks/useInput";
+import Profile from "../components/common/Profile";
 
 const Home: NextPage = () => {
   const inputValue = useInput({
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   return (
     <PageContainer>
+      <Profile src=""></Profile>
       <Input
         label="이름"
         placeholder="입력하세요"
@@ -33,9 +35,7 @@ const Home: NextPage = () => {
       ></Input>
       <Button
         onClick={() =>
-          bridgeEvent("navigate", { url: "/test" }, ({ url }) =>
-            router.push(url)
-          )
+          bridgeEvent("signupNext", undefined, () => router.push("/test"))
         }
       >
         비밀번호
