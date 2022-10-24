@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       ></Input>
       <Button
         onClick={() =>
-          bridgeEvent("signupNext", undefined, () => router.push("/test"))
+          bridgeEvent("signUpNext", undefined, () => router.push("/test"))
         }
       >
         비밀번호
