@@ -9,6 +9,9 @@ const PageContainer = ({ children }: PropsWithChildren<PageContainerProps>) => {
 
 const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   position: absolute;
   padding: 0 16px;
