@@ -31,7 +31,7 @@ export const bridgeEvent = <T extends BridgeEventType>(
     typeof data === "string" ? String(data) : JSON.stringify(data);
   if (isMobile.any()) {
     if (isMobile.Android()) {
-      windowThis.android[event](stringData);
+      windowThis.android[event]();
     }
   } else {
     data && webEvent?.(data);
