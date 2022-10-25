@@ -27,11 +27,14 @@ export const bridgeEvent = <T extends BridgeEventType>(
   webEvent?: (data: BridgeDataType[T]) => void
 ) => {
   const windowThis = window as any;
+
   const stringData =
     typeof data === "string" ? String(data) : JSON.stringify(data);
   if (isMobile.any()) {
     if (isMobile.Android()) {
-      windowThis.android[event]();
+      typeof data === "undefined"
+        ? windowThis.android[event]()
+        : windowThis.android[event](stringData);
     }
   } else {
     data && webEvent?.(data);
