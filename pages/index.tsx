@@ -23,7 +23,6 @@ const Home: NextPage = () => {
   const onGetImage = async () => {
     try {
       const data = await bridgeEvent("getImage");
-      alert(String(data));
       if (data) {
         const url = URL.createObjectURL(data);
         setImageData(url);

@@ -9,7 +9,7 @@ export interface BridgeDataType extends Record<BridgeEventType, unknown> {
 }
 
 interface BridgeReturnType extends Record<BridgeEventType, unknown> {
-  getImage: Promise<Blob> | undefined;
+  getImage: Promise<Blob | File | MediaSource> | undefined;
 }
 
 const isMobile = {
