@@ -6,6 +6,7 @@ import { bridgeEvent } from "../utils/func/bridgeEvent";
 import PageContainer from "../components/common/Container";
 import useInput from "../hooks/useInput";
 import Profile from "../components/common/Profile";
+import { useState } from "react";
 
 const Home: NextPage = () => {
   const [value, setValue] = useInput({
@@ -18,15 +19,15 @@ const Home: NextPage = () => {
     birth: "",
   });
   const router = useRouter();
-
+  const [imageData, setImageData] = useState<string>("");
   const onGetImage = () => {
     const data = bridgeEvent("getImage");
-    alert(data);
+    setImageData(data as string);
   };
 
   return (
     <PageContainer>
-      <Profile src="" onClick={onGetImage}></Profile>
+      <Profile src={imageData} onClick={onGetImage}></Profile>
       <Input
         label="이름"
         placeholder="입력하세요"
