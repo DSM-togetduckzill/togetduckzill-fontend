@@ -22,7 +22,8 @@ const Home: NextPage = () => {
   const [imageData, setImageData] = useState<string>("");
   const onGetImage = () => {
     const data = bridgeEvent("getImage");
-    setImageData(data as string);
+    alert(data);
+    data && setImageData(data);
   };
 
   return (
