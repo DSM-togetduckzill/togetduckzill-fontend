@@ -8,20 +8,42 @@ import useInput from "../hooks/useInput";
 import Profile from "../components/common/Profile";
 
 const Home: NextPage = () => {
-  const inputValue = useInput({
+  const [value, setValue] = useInput({
     name: "",
     password: "",
+    pesswordCheck: "",
+    id: "",
+    introduce: "",
+    phoneNumber: "",
+    birth: "",
   });
   const router = useRouter();
+
+  const onGetImage = () => {
+    const data = bridgeEvent("getImage");
+    console.log(data);
+  };
+
   return (
     <PageContainer>
-      <Profile src=""></Profile>
+      <Profile src="" onClick={onGetImage}></Profile>
+      {Object.keys(value).map((name, idx) => (
+        <Input
+          key={idx}
+          label={name}
+          placeholder={`${name}을 입력하세요`}
+          name={name}
+          value={value.name}
+          onChange={setValue}
+          limit={20}
+        />
+      ))}
       <Input
         label="이름"
         placeholder="입력하세요"
         name="name"
-        value={inputValue[0].name}
-        onChange={inputValue[1]}
+        value={value.name}
+        onChange={setValue}
         limit={20}
       ></Input>
       <Input
@@ -29,8 +51,8 @@ const Home: NextPage = () => {
         placeholder="입력하세요"
         name="password"
         type={"password"}
-        value={inputValue[0].password}
-        onChange={inputValue[1]}
+        value={value.password}
+        onChange={setValue}
         limit={20}
       ></Input>
       <Button

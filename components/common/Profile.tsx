@@ -3,12 +3,13 @@ import EditIcon from "../../assets/edit.png";
 
 interface ProfileType {
   src: string;
+  onClick?: () => void;
 }
 
-const Profile = ({ src }: ProfileType) => {
+const Profile = ({ src, onClick }: ProfileType) => {
   return (
     <ImageWrapper src={src}>
-      <EditButton />
+      <EditButton onClick={onClick} />
     </ImageWrapper>
   );
 };
@@ -36,6 +37,7 @@ const EditButton = styled.div`
   background-repeat: no-repeat;
   bottom: 0;
   right: 0;
+  cursor: pointer;
 `;
 
 export default Profile;
