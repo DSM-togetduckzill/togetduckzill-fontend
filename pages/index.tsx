@@ -20,10 +20,13 @@ const Home: NextPage = () => {
   });
   const router = useRouter();
   const [imageData, setImageData] = useState<string>("");
-  const onGetImage = () => {
-    const data = bridgeEvent("getImage");
-    alert(data);
-    data && setImageData(data);
+  const onGetImage = async () => {
+    try {
+      const data = await bridgeEvent("getImage");
+      data && setImageData(data);
+    } catch (e) {
+      alert(e);
+    }
   };
 
   return (
