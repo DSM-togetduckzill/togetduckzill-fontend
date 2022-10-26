@@ -21,23 +21,12 @@ const Home: NextPage = () => {
 
   const onGetImage = () => {
     const data = bridgeEvent("getImage");
-    console.log(data);
+    alert(data);
   };
 
   return (
     <PageContainer>
       <Profile src="" onClick={onGetImage}></Profile>
-      {Object.keys(value).map((name, idx) => (
-        <Input
-          key={idx}
-          label={name}
-          placeholder={`${name}을 입력하세요`}
-          name={name}
-          value={value.name}
-          onChange={setValue}
-          limit={20}
-        />
-      ))}
       <Input
         label="이름"
         placeholder="입력하세요"
