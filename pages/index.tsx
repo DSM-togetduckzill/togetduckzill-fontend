@@ -20,8 +20,7 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const onGetImage = () => {
-    const data = bridgeEvent("getImage");
-    alert(data);
+    bridgeEvent("getImage");
   };
 
   return (
