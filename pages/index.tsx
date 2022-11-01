@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   const [imageData, setImageData] = useState<string>("");
   useBridgeEvent("getImage", (e) => {
+    alert(e.detail);
     setImageData(e.detail);
   });
 
