@@ -7,6 +7,7 @@ import PageContainer from "../components/common/Container";
 import useInput from "../hooks/useInput";
 import Profile from "../components/common/Profile";
 import { useState } from "react";
+import useBridgeEvent from "../hooks/useBridgeEvent";
 
 const Home: NextPage = () => {
   const [value, setValue] = useInput({
@@ -20,21 +21,16 @@ const Home: NextPage = () => {
   });
   const router = useRouter();
   const [imageData, setImageData] = useState<string>("");
-  const onGetImage = async () => {
-    try {
-      const data = await bridgeEvent("getImage");
-      if (data) {
-        const url = URL.createObjectURL(data);
-        setImageData(url);
-      }
-    } catch (e) {
-      alert(e);
-    }
-  };
+  useBridgeEvent("getImage", (e) => {
+    setImageData(e.detail);
+  });
 
   return (
     <PageContainer>
-      <Profile src={imageData} onClick={onGetImage}></Profile>
+      <Profile
+        src={imageData}
+        onClick={() => bridgeEvent("openGallery")}
+      ></Profile>
       <Input
         label="이름"
         placeholder="입력하세요"

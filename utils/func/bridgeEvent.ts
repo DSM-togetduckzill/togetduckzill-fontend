@@ -1,15 +1,18 @@
-export type BridgeEventType = "navigate" | "signUpNext" | "getImage";
+export type BridgeEventType =
+  | "navigate"
+  | "signUpNext"
+  | "openGallery"
+  | "getImage";
 
 export interface BridgeDataType extends Record<BridgeEventType, unknown> {
   navigate: {
     url: string;
   };
   signUpNext: undefined;
-  getImage: undefined;
 }
 
-interface BridgeReturnType extends Record<BridgeEventType, unknown> {
-  getImage: Promise<Blob | File | MediaSource> | undefined;
+export interface BridgeReturnType extends Record<BridgeEventType, unknown> {
+  getImage: string;
 }
 
 const isMobile = {
@@ -30,7 +33,7 @@ export const bridgeEvent = <T extends BridgeEventType>(
   event: T,
   data?: BridgeDataType[T],
   webEvent?: (data: BridgeDataType[T]) => void
-): BridgeReturnType[T] => {
+): BridgeReturnType[T] | undefined => {
   const windowThis = window as any;
   const stringData =
     typeof data === "string" ? String(data) : JSON.stringify(data);
