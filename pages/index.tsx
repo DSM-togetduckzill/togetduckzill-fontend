@@ -23,7 +23,7 @@ const Home: NextPage = () => {
   const [imageData, setImageData] = useState<string>("");
 
   useBridgeEvent("getImage", (e) => {
-    setImageData(e.detail);
+    setImageData(`data:image/jpeg;base64,${e.detail}`);
   });
 
   return (
