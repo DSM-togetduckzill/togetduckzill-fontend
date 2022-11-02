@@ -23,16 +23,12 @@ const Home: NextPage = () => {
   const [imageData, setImageData] = useState<string>("");
 
   useBridgeEvent("getImage", (e) => {
-    alert(e.detail);
     setImageData(`data:image/jpeg;base64,${e.detail}`);
   });
 
   return (
     <PageContainer>
-      <Profile
-        src={imageData}
-        onClick={() => bridgeEvent("openGallery")}
-      ></Profile>
+      <Profile src={imageData} onClick={() => bridgeEvent("openGallery")} />
       <Input
         label="이름"
         placeholder="입력하세요"
@@ -40,7 +36,7 @@ const Home: NextPage = () => {
         value={value.name}
         onChange={setValue}
         limit={20}
-      ></Input>
+      />
       <Input
         label="비밀번호"
         placeholder="입력하세요"
@@ -49,22 +45,70 @@ const Home: NextPage = () => {
         value={value.password}
         onChange={setValue}
         limit={20}
-      ></Input>
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
+      <Input
+        label="비밀번호"
+        placeholder="입력하세요"
+        name="password"
+        type={"password"}
+        value={value.password}
+        onChange={setValue}
+        limit={20}
+      />
       <Button
         onClick={() =>
           bridgeEvent("signUpNext", undefined, () => router.push("/test"))
         }
       >
-        비밀번호
+        회원가입
       </Button>
     </PageContainer>
   );
 };
 
 export default Home;
-
-// window.dispatchEvent(
-//   new CustomEvent("getImage", {
-//     detail: data,
-//   })
-// );
