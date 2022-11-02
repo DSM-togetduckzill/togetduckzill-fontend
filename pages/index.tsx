@@ -21,9 +21,10 @@ const Home: NextPage = () => {
   });
   const router = useRouter();
   const [imageData, setImageData] = useState<string>("");
+
   useBridgeEvent("getImage", (e) => {
     alert(e.detail);
-    setImageData(e.detail);
+    setImageData(`data:image/jpeg;base64,${e.detail}`);
   });
 
   return (
@@ -61,3 +62,9 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+// window.dispatchEvent(
+//   new CustomEvent("getImage", {
+//     detail: data,
+//   })
+// );
