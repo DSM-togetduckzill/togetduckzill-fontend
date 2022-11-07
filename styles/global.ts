@@ -15,6 +15,9 @@ export const global = css`
     -webkit-touch-callout: none;
     font-style: normal;
   }
+  body {
+    background-color: #fff1e3;
+  }
   button,
   label {
     cursor: pointer;

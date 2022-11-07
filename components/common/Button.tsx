@@ -40,6 +40,8 @@ const CustomButton = styled.button`
 const ButtonBlank = styled.div`
   width: 100%;
   height: 80px;
+  background-color: ${({ theme }) => theme.background};
+  filter: blur(0.5);
 `;
 
 export default Button;
