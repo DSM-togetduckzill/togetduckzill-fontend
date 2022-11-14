@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 import EditIcon from "../../assets/edit.png";
 
 interface ProfileType {
-  src: string;
+  src?: string;
   onClick?: () => void;
 }
 
 const Profile = ({ src, onClick }: ProfileType) => {
   return (
-    <ImageWrapper src={src}>
+    <ImageWrapper src={src || ""}>
       <EditButton onClick={onClick} />
     </ImageWrapper>
   );
