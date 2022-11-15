@@ -2,13 +2,15 @@ export type BridgeEventType =
   | "navigate"
   | "signUpNext"
   | "openGallery"
-  | "getImage";
+  | "getImage"
+  | "makeRoomFinish";
 
 export interface BridgeDataType extends Record<BridgeEventType, unknown> {
   navigate: {
     url: string;
   };
   signUpNext: undefined;
+  makeRoomFinish: undefined;
 }
 
 export interface BridgeReturnType extends Record<BridgeEventType, unknown> {

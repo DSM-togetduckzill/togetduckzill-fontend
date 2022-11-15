@@ -36,7 +36,7 @@ const MakeRoom = () => {
           value={makeRoomInfo.roomDescription}
         />
       </InputConatiner>
-      <Button onClick={() => {}}>방 생성하기</Button>
+      <Button onClick={() => bridgeEvent("makeRoomFinish")}>방 생성하기</Button>
     </MakeRoomInfoContainer>
   );
 };
