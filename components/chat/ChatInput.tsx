@@ -1,14 +1,10 @@
 import styled from "@emotion/styled";
-import {
-  ChangeEvent,
-  HTMLInputTypeAttribute,
-  useCallback,
-  useRef,
-} from "react";
+import { ChangeEvent, RefObject, useRef } from "react";
 import sendIcon from "../../assets/send.png";
 interface ChatInputProps {
   value: string;
   placeholder?: string;
+  inputRef?: RefObject<HTMLInputElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSend: () => void;
 }
@@ -18,26 +14,28 @@ const ChatInput = ({
   onSend,
   value,
   placeholder,
+  inputRef,
 }: ChatInputProps) => {
   const bottomRef = useRef<HTMLDivElement>(null);
-  const onSubmitChat = useCallback(async () => {
-    await onSend();
-    bottomRef.current?.scrollIntoView(false);
-  }, [onSend]);
   return (
     <>
       <BottomWrapper
         onSubmit={(e) => {
-          onSubmitChat();
+          onSend();
           e.preventDefault();
         }}
       >
         <InputContainer>
-          <Input onChange={onChange} value={value} placeholder={placeholder} />
+          <Input
+            onChange={onChange}
+            value={value}
+            placeholder={placeholder}
+            ref={inputRef}
+          />
           <SubmitIcon
             src={sendIcon.src}
             onClick={() => {
-              onSubmitChat();
+              onSend();
             }}
           ></SubmitIcon>
         </InputContainer>

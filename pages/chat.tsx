@@ -1,38 +1,23 @@
 import styled from "@emotion/styled";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent } from "react";
 import ChatInput from "../components/chat/ChatInput";
 import PageContainer from "../components/common/Container";
 import Message from "../components/common/Message";
+import useChatTest from "../hooks/useChatTest";
 import useInput from "../hooks/useInput";
-import localstorage from "../utils/func/localstorage";
-
-type ChatType = { chat: string; isMine: boolean };
 
 const Chat = () => {
   const [chat, setChat] = useInput("");
-  const [chatList, setChatList] = useState<ChatType[]>([]);
-
-  useEffect(() => {
-    const otherChat = [
-      "안녕",
-      "뭐해?",
-      "혹시 앙상블 스타즈 많이 좋아하니?",
-      "오 내 최애 캐릭터는 신카이 카나타야!",
-      "우리 많이 친해지자!",
-      "실명 공개할까?",
-    ];
-    otherChat.map((s, idx) => {
-      setTimeout(() => {
-        setChatList((state) => [...state, { chat: s, isMine: false }]);
-      }, idx * 6000);
-    });
-  }, []);
+  const { bottomRef, chatList, setChatList, toButtom } =
+    useChatTest<HTMLInputElement>();
 
   const onSendChat = () => {
     if (chat) {
       setChatList((state) => [...state, { chat: chat, isMine: true }]);
       setChat({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
     }
+    toButtom();
+    bottomRef.current?.focus();
   };
 
   return (
@@ -47,6 +32,7 @@ const Chat = () => {
         onChange={setChat}
         value={chat}
         placeholder="채팅을 입력하세요."
+        inputRef={bottomRef}
       />
     </ChatPageContainer>
   );
