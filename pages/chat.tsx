@@ -11,10 +11,6 @@ type ChatType = { chat: string; isMine: boolean };
 const Chat = () => {
   const [chat, setChat] = useInput("");
   const [chatList, setChatList] = useState<ChatType[]>([]);
-  useEffect(() => {
-    const listData = localstorage.getData("chatList");
-    setChatList((JSON.parse(listData) as ChatType[]) || []);
-  }, []);
 
   useEffect(() => {
     const otherChat = [
@@ -27,22 +23,14 @@ const Chat = () => {
     ];
     otherChat.map((s, idx) => {
       setTimeout(() => {
-        setChatList((state) => {
-          const afterData = [...state, { chat: s, isMine: false }];
-          localstorage.setData("chatList", JSON.stringify(afterData));
-          return afterData;
-        });
-      }, (idx - 1) * 6000);
+        setChatList((state) => [...state, { chat: s, isMine: false }]);
+      }, idx * 6000);
     });
   }, []);
 
   const onSendChat = () => {
     if (chat) {
-      setChatList((state) => {
-        const afterData = [...state, { chat: chat, isMine: true }];
-        localstorage.setData("chatList", JSON.stringify(afterData));
-        return afterData;
-      });
+      setChatList((state) => [...state, { chat: chat, isMine: true }]);
       setChat({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
     }
   };
