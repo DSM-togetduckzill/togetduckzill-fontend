@@ -6,10 +6,10 @@ import Message from "../components/common/Message";
 import useChatTest from "../hooks/useChatTest";
 import useInput from "../hooks/useInput";
 
-const Chat = () => {
+const Spider = () => {
   const [chat, setChat] = useInput("");
   const { bottomRef, chatList, setChatList, toButtom } =
-    useChatTest<HTMLInputElement>("ensemble");
+    useChatTest<HTMLInputElement>("spider");
 
   const onSendChat = () => {
     if (chat) {
@@ -43,4 +43,4 @@ const ChatPageContainer = styled(PageContainer)`
   padding-top: 20px;
 `;
 
-export default Chat;
+export default Spider;
